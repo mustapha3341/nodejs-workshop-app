@@ -1,0 +1,5 @@
+<div class="contacts-page">
+  {{#each contacts}}
+    <h1>{{this.first_name}} {{#if this.isBlackListed}} * {{/if}}</h1>
+  {{/each}}
+</div>
