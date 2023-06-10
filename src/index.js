@@ -12,6 +12,8 @@ server.set("views", path.join(__dirname, "views"));
 
 server.use(express.static(path.resolve(__dirname, "/public")));
 
+server.use(express.json());
+
 server.use("/", appRouter);
 
 server.listen(PORT, () => {

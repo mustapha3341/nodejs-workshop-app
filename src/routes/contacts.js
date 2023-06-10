@@ -1,20 +1,14 @@
-const express = require("express");
-const fs = require("fs");
-const path = require("path");
+const { Router } = require("express");
+const {
+  contactHandler,
+  createContactHandler,
+  updateContactHandler,
+} = require("../handlers");
 
-const contactsRouter = express.Router();
-const contactsData = fs.readFileSync(path.join(__dirname, "../contacts.json"), {
-  encoding: "utf-8",
-});
+const contactsRouter = Router();
 
-contactsRouter.get("/", (req, res) => {
-  const contacts = JSON.parse(contactsData).contacts;
-  res.render("contacts", { contacts });
-});
-
-contactsRouter.get("/json", (req, res) => {
-  const contacts = JSON.parse(contactsData).contacts;
-  res.json({ contacts });
-});
+contactsRouter.get("/", contactHandler);
+contactsRouter.post("/new", createContactHandler);
+contactsRouter.patch("/:contactFirstName/update", updateContactHandler);
 
 module.exports = contactsRouter;
